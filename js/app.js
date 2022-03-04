@@ -53,15 +53,16 @@ window.addEventListener("load", loadInitialUI);
 
 const backBtn = document.querySelector(".go-back");
 const showMoreDetails = (e) => {
-  countriesGrid.style.display = "none";
+  // countriesGrid.style.display = "none";
+  putInactiveClass(countriesGrid);
 };
 
 //get search by name data
-const searchBar = document.getElementById("search-bar").value;
+const searchBar = document.getElementById("search-bar");
 
 const searchCountry = async () => {
   const fetchData = await fetch(
-    `https://restcountries.com/v3.1/name/${searchBar}`
+    `https://restcountries.com/v3.1/name/${searchBar.value}`
   );
   const data = await fetchData.json();
 
@@ -69,7 +70,7 @@ const searchCountry = async () => {
 };
 
 let countryHtml;
-const countryContainer = document.querySelector(".wrap");
+const countryContainer = document.querySelector(".country-fill");
 const showCountry = (countryEntry) => {
   const [country] = countryEntry;
   console.log(country);
@@ -163,12 +164,16 @@ const showCountry = (countryEntry) => {
                 <span class="flex">
                     <h4>Border Countries:</h4>
                         <div class="borders-wrap">
-                        ${bordersArr
-                          .map((border) =>
-                            `<p class="borders">${border}</p>
+                        ${
+                          borders
+                            ? bordersArr
+                                .map((border) =>
+                                  `<p class="borders">${border}</p>
                               `.trim()
-                          )
-                          .join(",")}
+                                )
+                                .join(",")
+                            : `<p>${common} has no borders!</p>`
+                        }
                             </div>
                     </span>
             </div>
@@ -176,14 +181,28 @@ const showCountry = (countryEntry) => {
     </div>
   `;
 
-  countryContainer.insertAdjacentHTML("beforeend", countryHtml);
+  countryContainer.innerHTML = countryHtml;
 };
 searchCountry();
 
 const goBack = () => {
-  countriesGrid.style.display = "grid";
-  singleCountry.style.display = "none";
+  // countriesGrid.style.display = "grid";
+  // singleCountry.style.display = "none";
+
+  removeInactiveClass(countriesGrid);
+  putInactiveClass(singleCountry);
+};
+
+//idea
+const putInactiveClass = (element) => {
+  return element.classList.add("inactive");
+};
+const removeInactiveClass = (element) => {
+  return element.classList.remove("inactive");
 };
 
 //Event Listeners
+searchBar.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") searchCountry();
+});
 backBtn.addEventListener("click", goBack);

@@ -86,6 +86,10 @@
   color: #858585;
 }
 
+.grid.inactive {
+  display: none;
+}
+
 .country {
   width: 100vw;
   height: 100vh;
@@ -111,6 +115,10 @@
 .borders-wrap {
   display: flex;
   flex-wrap: wrap;
+}
+
+.country.inactive {
+  display: none;
 }
 
 * {
