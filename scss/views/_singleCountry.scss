@@ -1,0 +1,35 @@
+@use "../utilities/colors";
+@use "../utilities/mixins";
+
+.country {
+  width: 100vw;
+  height: 100vh;
+  background: colors.$VeryLightGray;
+
+  .wrap {
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+  &-container {
+    border-radius: 0.3rem;
+    overflow: hidden;
+    @include mixins.boxShadow(10px);
+    &-left img {
+      width: 100%;
+    }
+
+    &-right {
+      &-col {
+        h3 {
+          margin: 2rem 0;
+          font-size: clamp(1.3rem, 2vw, 1.7rem);
+        }
+      }
+    }
+  }
+}
+.borders-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}

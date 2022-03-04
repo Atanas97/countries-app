@@ -1,0 +1,45 @@
+@use "../utilities/colors";
+@use "../utilities/mixins";
+
+.grid {
+  display: grid;
+  gap: 3rem;
+
+  &-card {
+    width: 90vw;
+    margin: 0 auto;
+    background-color: colors.$White;
+    overflow: hidden;
+    @include mixins.boxShadow(10px);
+    border-radius: 0.3rem;
+  }
+
+  &-card-top img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &-card-bottom {
+    padding: 2rem;
+
+    h3 {
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      padding-bottom: 1rem;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin: 1rem 0;
+
+      p:first-of-type {
+        color: colors.$DarkBlue;
+      }
+
+      p:last-of-type {
+        color: colors.$DarkGray;
+      }
+    }
+  }
+}

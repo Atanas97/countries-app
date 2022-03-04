@@ -1,0 +1,23 @@
+@use "../scss/utilities/fonts";
+@use "../scss/utilities/colors";
+@import "../scss/views/header";
+@import "../scss/views/searchInputs";
+@import "../scss/views/gridContainer";
+@import "../scss/views/singleCountry";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: fonts.$nunito;
+}
+body {
+  background-color: colors.$VeryLightGray;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 1rem 0;
+}
