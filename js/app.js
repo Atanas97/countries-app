@@ -7,6 +7,7 @@ const loader = document.querySelector(".loader");
 const countryContainer = document.querySelector(".country-fill");
 const navigationBar = document.querySelector(".countries-navigation");
 const darkModeBtn = document.querySelector(".header-right");
+const clearSearchBtn = document.getElementById("clear-input");
 
 const loadInitialUI = async () => {
   searchBar.value = "";
@@ -222,6 +223,22 @@ const goBack = () => {
   putInactiveClass(singleCountry, "inactive");
 };
 
+const displayClearSearch = (e) => {
+  const inputVal = e.target.value;
+  // if (!inputVal) return;
+  inputVal
+    ? putInactiveClass(clearSearchBtn, "show")
+    : removeInactiveClass(clearSearchBtn, "show");
+
+  // if (inputVal === "") removeInactiveClass(clearSearchBtn, "show");
+};
+
+const clearSearch = () => {
+  searchBar.value = "";
+  removeInactiveClass(clearSearchBtn, "show");
+};
+
+//Toggle Dark/Light Mode
 const toggleMode = () => {};
 
 //idea
@@ -249,3 +266,7 @@ searchBar.addEventListener("keypress", (e) => {
 backBtn.addEventListener("click", goBack);
 window.addEventListener("load", hideLoader());
 darkModeBtn.addEventListener("click", toggleMode);
+
+//Show cross to clear input from text
+searchBar.addEventListener("input", displayClearSearch);
+clearSearchBtn.addEventListener("click", clearSearch);
