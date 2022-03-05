@@ -42,6 +42,13 @@
       }
     }
   }
+
+  .loader {
+    margin: 0 auto;
+  }
+  .loader.hide {
+    display: none;
+  }
 }
 .grid.inactive {
   display: none;

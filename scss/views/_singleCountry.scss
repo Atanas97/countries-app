@@ -3,18 +3,24 @@
 
 .country {
   width: 100vw;
-  height: 100vh;
   background: colors.$VeryLightGray;
 
   .wrap {
     width: 90vw;
     margin: 0 auto;
+
+    .go-back-btn {
+      @include mixins.boxShadow(10px);
+      @include mixins.border(#222);
+      margin: 2rem 0 4rem 0;
+      i {
+        color: #000;
+        padding-right: 0.5rem;
+      }
+    }
   }
 
   &-container {
-    border-radius: 0.3rem;
-    overflow: hidden;
-    @include mixins.boxShadow(10px);
     &-left img {
       width: 100%;
     }
@@ -24,7 +30,18 @@
         h3 {
           margin: 2rem 0;
           font-size: clamp(1.3rem, 2vw, 1.7rem);
+          color: colors.$VeryDarkBlue;
         }
+        h4 {
+          font-size: clamp(1rem, 1.9vw, 1rem);
+          color: colors.$VeryDarkBlue;
+        }
+        p {
+          color: #444;
+        }
+      }
+      &-col:nth-child(2) {
+        margin: 3rem 0;
       }
     }
   }
@@ -32,8 +49,22 @@
 .borders-wrap {
   display: flex;
   flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  .borders {
+    @include mixins.border(#222);
+    @include mixins.boxShadow(10px);
+    width: 6rem;
+    height: 1.75rem;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+  }
 }
 
 .country.inactive {
+  display: none;
+}
+.go-back-btn.hide {
   display: none;
 }

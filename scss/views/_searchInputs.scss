@@ -4,7 +4,8 @@
 .countries-navigation {
   //   background-color: red;
   width: 90vw;
-  margin: 1.5rem auto;
+  margin-inline: auto;
+  padding: 1rem 0;
   &-input {
     position: relative;
     display: flex;
@@ -27,4 +28,7 @@
       color: colors.$DarkGray;
     }
   }
+}
+.countries-navigation.inactive {
+  display: none;
 }
