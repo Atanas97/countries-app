@@ -42,14 +42,36 @@
       }
     }
   }
-
-  .loader {
-    margin: 0 auto;
-  }
-  .loader.hide {
-    display: none;
-  }
 }
+
 .grid.inactive {
   display: none;
+}
+
+.loader {
+  display: flex;
+
+  img {
+    margin: 0 auto;
+  }
+}
+.loader.hide {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+  .grid {
+    // display: flex;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+    max-width: 90vw;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 3rem;
+
+    &-card {
+      width: unset;
+      margin-inline: 0;
+    }
+  }
 }

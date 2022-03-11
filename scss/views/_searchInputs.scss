@@ -6,6 +6,39 @@
   width: 90vw;
   margin-inline: auto;
   padding: 1rem 0;
+
+  &-dropdown {
+    display: inline-block;
+    color: colors.$VeryDarkBlue2;
+
+    p {
+      background-color: colors.$White;
+      padding: 1rem 1.5rem;
+      border-radius: 0.3rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 4rem;
+      align-items: center;
+      cursor: pointer;
+      @include mixins.boxShadow(5px);
+    }
+
+    ul {
+      display: none;
+      border-radius: 0.3rem;
+      background-color: colors.$White;
+      margin-top: 0.5rem;
+      @include mixins.boxShadow(10px);
+      padding: 0.3rem 1rem;
+
+      li {
+        list-style-type: none;
+        margin: 0.75rem 0;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+    }
+  }
   &-input {
     position: relative;
     display: flex;
@@ -43,4 +76,32 @@
 }
 #clear-input.show {
   display: block;
+}
+
+.filter-options.show {
+  display: block;
+}
+
+@media screen and (min-width: 769px) {
+  .countries-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 3rem 0;
+
+    &-input {
+      width: 40%;
+
+      #clear-input {
+        left: 94%;
+      }
+
+      .fa-magnifying-glass {
+        left: 3%;
+      }
+    }
+    &-dropdown {
+      margin: 0;
+    }
+  }
 }

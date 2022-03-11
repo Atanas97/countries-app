@@ -8,6 +8,10 @@ const countryContainer = document.querySelector(".country-fill");
 const navigationBar = document.querySelector(".countries-navigation");
 const darkModeBtn = document.querySelector(".header-right");
 const clearSearchBtn = document.getElementById("clear-input");
+//dropdown and options
+const dropdown = document.querySelector(".filter-options");
+const dropdownBtn = document.querySelector(".options-btn");
+const dropdownOptions = document.querySelectorAll(".filter-options li");
 
 const loadInitialUI = async () => {
   searchBar.value = "";
@@ -22,53 +26,53 @@ const loadInitialUI = async () => {
 };
 
 const showDataOnLoad = (data) => {
-  if (data) {
-    let html;
-    for (let index = 0; index <= 7; index++) {
-      const num = Math.floor(Math.random() * 250);
-      if (data[num].capital === undefined) continue;
-      //destructure variables from objects needed for the grid card.
-      const {
-        name: { common },
-        population,
-        region,
-        capital: [capital],
-        flags: { png },
-        // cca2,
-        // cca3,
-        // ccn3,
-      } = data[num];
+  showLoader();
 
-      html = `
-        <div class="grid-card">
-            <div class="grid-card-top">
-                <img src="${png}" alt="${common}'s flag" />
-            </div>
-            <div class="grid-card-bottom">
-                <h3>${common}</h3>
-            <span class="flex">
-                <h4>Population:</h4>
-                <p>${population}</p>
-            </span>
-            <span class="flex">
-                <h4>Region:</h4>
-                <p>${region}</p>
-            </span>
-            <span class="flex">
-                <h4>Capital:</h4>
-                <p>${capital}</p>
-            </span>
-        </div>
-    `;
-      //
+  let html;
+  for (let index = 0; index <= 7; index++) {
+    const num = Math.floor(Math.random() * 49);
+    console.log(num);
+    if (data[num].capital === undefined) continue;
 
-      countriesGrid.insertAdjacentHTML("afterbegin", html);
-      const gridCard = document.querySelector(".grid-card");
-      gridCard.addEventListener("click", () => {
-        searchCountry(common);
-      });
-      hideLoader();
-    }
+    //destructure variables from objects needed for the grid card.
+    const {
+      name: { common },
+      population,
+      region,
+      capital: [capital],
+      flags: { png },
+    } = data[num];
+
+    html = `
+          <div class="grid-card">
+              <div class="grid-card-top">
+                  <img src="${png}" alt="${common}'s flag" />
+              </div>
+              <div class="grid-card-bottom">
+                  <h3>${common}</h3>
+              <span class="flex">
+                  <h4>Population:</h4>
+                  <p>${population.toLocaleString()}</p>
+              </span>
+              <span class="flex">
+                  <h4>Region:</h4>
+                  <p>${region}</p>
+              </span>
+              <span class="flex">
+                  <h4>Capital:</h4>
+                  <p>${capital}</p>
+              </span>
+          </div>
+      `;
+
+    countriesGrid.insertAdjacentHTML("afterbegin", html);
+    const gridCard = document.querySelector(".grid-card");
+    gridCard.addEventListener("click", () => {
+      searchCountry(common);
+    });
+    hideLoader();
+    removeInactiveClass(dropdown, "show");
+    removeInactiveClass(countriesGrid, "inactive");
   }
 };
 
@@ -114,67 +118,71 @@ const showCountry = (countryEntry) => {
   if ("tld" in country) topDomain = Object.values(tld);
 
   countryHtml = `
-    <div class="country-container">
-        <div class="country-container-left">
-            <img src="${svg}" alt="${common}'s flag">
-        </div>
-        <div class="country-container-right">
-            <div class="country-container-right-col">
+              <div class="country-container">
+              <div class="country-container-left">
+              <img src="${svg}" alt="${common}'s flag">
+              </div>
+              <div class="country-container-right">
                 <h3>${common}</h3>
-                <span class="flex">
-                  <h4>Native Name:</h4>
-                  <p>${altSpellings[1]}</p>
-                </span>
-                <span class="flex">
-                  <h4>Population:</h4>
-                  <p>${population}</p>
+                  <div>
+                    <div>
+                      <span class="flex">
+                        <h4>Native Name:</h4>
+                        <p>${altSpellings[1]}</p>
+                      </span>
+                      <span class="flex">
+                          <h4>Population:</h4>
+                          <p>${population}</p>
+                        </span>
+                      <span class="flex">
+                        <h4>Region:</h4>
+                        <p>${region}</p>
+                      </span>
+                      <span class="flex">
+                        <h4>Sub Region</h4>
+                        <p>${subregion}</p>
+                      </span>
+                      <span class="flex">
+                        <h4>Capital:</h4>
+                        <p>${capital}</p>
+                      </span>
+                    </div>
+                  
+                  <div class="">
+                  <span class="flex">
+                  <h4>Top Domain:</h4>
+                  ${
+                    tld
+                      ? topDomain
+                          .map((domain) =>
+                            `
+                    <p>${domain}</p>
+                    `.trim()
+                          )
+                          .join("")
+                      : `<p>${common} has no top domains!</p>`
+                  }
                   </span>
-                <span class="flex">
-                  <h4>Region:</h4>
-                  <p>${region}</p>
-                </span>
-                <span class="flex">
-                  <h4>Sub Region</h4>
-                  <p>${subregion}</p>
-                </span>
-                <span class="flex">
-                  <h4>Capital:</h4>
-                  <p>${capital}</p>
-                </span>
-            </div>
-            <div class="country-container-right-col">
-                <span class="flex">
-                    <h4>Top Domain:</h4>
-                    ${
-                      tld
-                        ? topDomain
-                            .map((domain) =>
-                              `
-                      <p>${domain}</p>
-                      `.trim()
-                            )
-                            .join("")
-                        : `<p>${common} has no top domains!</p>`
-                    }
-                    </span>
-                    <span class="flex">
-                      <h4>Currency:</h4>
-                      <p>$</p>
-                    </span>
-                    <span class="flex">
-                      <h4>Languages:</h4>
-                      ${languagesArr
-                        .map((language) =>
-                          `
-                      <p>${language}</p>
-                      `.trim()
-                        )
-                        .join(",")}
-                    </span>
-            </div>
-            <div class="country-container-right-col"> 
-              <h4>Border Countries:</h4>
-                  <div class="borders-wrap">
+                  <span class="flex">
+                    <h4>Currency:</h4>
+                    <p>$</p>
+                  </span>
+                  <span class="flex">
+                    <h4>Languages:</h4>
+                    ${languagesArr
+                      .map((language) =>
+                        `
+                    <p>${language}</p>
+                    `.trim()
+                      )
+                      .join(",")}
+                  </span>
+                  </div>
+                </div>
+                  <div>
+                      <span>
+                          <h4>Border Countries:</h4>
+                          <div class="borders-wrap">
                   ${
                     borders
                       ? bordersArr
@@ -186,9 +194,10 @@ const showCountry = (countryEntry) => {
                       : `<p>${common} has no borders!</p>`
                   }
                       </div>
+                        </span>
+                  </div>
+              </div> 
             </div>
-        </div>
-    </div>
   `;
 
   countryContainer.innerHTML = countryHtml;
@@ -215,6 +224,22 @@ const countryCodeFetch = async (code) => {
   const data = await fetchData.json();
 
   showCountry(data);
+};
+
+//Fetch by region function
+//API - https://restcountries.com/v3.1/region/{region}
+const fetchByRegion = async (region) => {
+  try {
+    showLoader();
+    putInactiveClass(countriesGrid, "inactive");
+    const fetchRegion = await fetch(
+      `https://restcountries.com/v3.1/region/${region}`
+    );
+    const regionData = await fetchRegion.json();
+    showDataOnLoad(regionData);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const goBack = () => {
@@ -270,3 +295,15 @@ darkModeBtn.addEventListener("click", toggleMode);
 //Show cross to clear input from text
 searchBar.addEventListener("input", displayClearSearch);
 clearSearchBtn.addEventListener("click", clearSearch);
+
+//Dropdown with filter options by region
+dropdownBtn.addEventListener("click", () => {
+  dropdown.classList.toggle("show");
+});
+
+dropdownOptions.forEach((region) => {
+  region.addEventListener("click", (e) => {
+    const region = e.target.dataset.region;
+    fetchByRegion(region);
+  });
+});
