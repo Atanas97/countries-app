@@ -136,7 +136,7 @@ const showCountry = (countryEntry) => {
                       </span>
                       <span class="flex">
                           <h4>Population:</h4>
-                          <p>${population}</p>
+                          <p>${population.toLocaleString()}</p>
                         </span>
                       <span class="flex">
                         <h4>Region:</h4>
@@ -258,8 +258,6 @@ const displayClearSearch = (e) => {
   inputVal
     ? putInactiveClass(clearSearchBtn, "show")
     : removeInactiveClass(clearSearchBtn, "show");
-
-  // if (inputVal === "") removeInactiveClass(clearSearchBtn, "show");
 };
 
 const clearSearch = () => {
@@ -270,6 +268,11 @@ const clearSearch = () => {
 //Toggle Dark/Light Mode
 const btnIcon = document.getElementById("darkmodeBtn");
 const toggleMode = () => {
+  document.body.classList.toggle("darkmode");
+  document.body.classList.contains("darkmode")
+    ? (btnIcon.className = "fa-solid fa-sun")
+    : (btnIcon.className = "fa-regular fa-moon");
+
   // putInactiveClass(header, "darkmode");
   // putInactiveClass(navigationBar, "darkmode");
   // putInactiveClass(wrap, "darkmode");

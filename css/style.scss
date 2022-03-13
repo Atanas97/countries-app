@@ -21,5 +21,20 @@
 }
 
 main {
-  background-color: colors.$VeryLightGray;
+  background-color: var(--lighter-bg);
+}
+
+//DarkMode Test
+body {
+  --DarkBlue: hsl(209, 23%, 22%);
+  --lighter-bg: hsl(0, 0%, 98%);
+  --darker-bg: hsl(200, 15%, 8%);
+  --white: hsl(0, 0%, 100%);
+}
+.darkmode {
+  --DarkBlue: hsl(209, 23%, 22%);
+  --lighter-bg: hsl(207, 26%, 17%);
+  --darker-bg: hsl(0, 0%, 98%);
+  --white: hsl(209, 23%, 22%);
+  transition: 250ms linear ease;
 }

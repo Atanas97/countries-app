@@ -8,7 +8,7 @@
   &-card {
     width: 90vw;
     margin: 0 auto;
-    background-color: colors.$White;
+    background-color: var(--white);
     overflow: hidden;
     @include mixins.boxShadow(10px);
     border-radius: 0.3rem;
@@ -25,6 +25,7 @@
 
     h3 {
       font-size: clamp(1.5rem, 2vw, 2rem);
+      color: var(--darker-bg);
       padding-bottom: 1rem;
     }
 
@@ -33,6 +34,7 @@
       align-items: center;
       gap: 0.3rem;
       margin: 1rem 0;
+      color: var(--darker-bg);
 
       p:first-of-type {
         color: colors.$DarkBlue;
