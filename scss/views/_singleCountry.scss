@@ -4,6 +4,7 @@
 .country {
   // width: 100vw;
   background: colors.$VeryLightGray;
+  // height: 100vh;
 
   .wrap {
     width: 90vw;
@@ -91,4 +92,9 @@
       }
     }
   }
+}
+
+.country.darkmode {
+  background-color: colors.$DarkBlue;
+  color: colors.$White;
 }

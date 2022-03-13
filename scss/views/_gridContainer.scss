@@ -12,6 +12,7 @@
     overflow: hidden;
     @include mixins.boxShadow(10px);
     border-radius: 0.3rem;
+    cursor: pointer;
   }
 
   &-card-top img {
@@ -73,5 +74,18 @@
       width: unset;
       margin-inline: 0;
     }
+  }
+}
+
+.countries-wrap.darkmode {
+  background-color: colors.$VeryDarkBlue;
+}
+
+.grid-card.darkmode {
+  background-color: colors.$DarkBlue;
+  color: colors.$White;
+
+  p {
+    color: colors.$VeryLightGray !important;
   }
 }

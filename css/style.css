@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;700&display=swap");
 .header {
   box-shadow: 0px 0px 4px rgba(75, 75, 75, 0.5);
+  background-color: white;
 }
 .header-flex {
   display: flex;
@@ -10,6 +11,7 @@
   width: 90vw;
   margin: 0 auto;
   padding: 2rem 0;
+  color: #111517;
 }
 .header-right {
   display: flex;
@@ -67,6 +69,7 @@
   padding: 0 3rem;
   border: none;
   border-radius: 0.2rem;
+  background-color: white;
   box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.5);
   font-size: 0.9rem;
 }
@@ -120,6 +123,11 @@
     margin: 0;
   }
 }
+.countries-navigation.darkmode :is(input, .options-btn, .filter-options) {
+  background-color: #2b3945;
+  color: white;
+}
+
 .grid {
   display: grid;
   gap: 3rem;
@@ -132,6 +140,7 @@
   overflow: hidden;
   box-shadow: 0px 0px 10px rgba(75, 75, 75, 0.5);
   border-radius: 0.3rem;
+  cursor: pointer;
 }
 .grid-card-top img {
   width: 100%;
@@ -185,6 +194,18 @@
     margin-inline: 0;
   }
 }
+.countries-wrap.darkmode {
+  background-color: #202c37;
+}
+
+.grid-card.darkmode {
+  background-color: #2b3945;
+  color: white;
+}
+.grid-card.darkmode p {
+  color: #fafafa !important;
+}
+
 .country {
   background: #fafafa;
 }
@@ -268,15 +289,16 @@
     margin: 2rem 0;
   }
 }
+.country.darkmode {
+  background-color: #2b3945;
+  color: white;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Nunito", sans-serif;
-}
-
-main {
-  background-color: #fafafa;
 }
 
 .flex {
@@ -285,4 +307,8 @@ main {
   flex-wrap: wrap;
   gap: 0.3rem;
   margin: 1rem 0;
+}
+
+main {
+  background-color: #fafafa;
 }/*# sourceMappingURL=style.css.map */

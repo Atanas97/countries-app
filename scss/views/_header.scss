@@ -4,6 +4,7 @@
 
 .header {
   @include mixins.boxShadow(4px);
+  background-color: colors.$White;
 
   &-flex {
     display: flex;
@@ -12,6 +13,7 @@
     width: 90vw;
     margin: 0 auto;
     padding: 2rem 0;
+    color: colors.$VeryDarkBlue2;
   }
 
   &-right {
@@ -27,3 +29,7 @@
     }
   }
 }
+// .header.darkmode {
+//   background-color: colors.$DarkBlue;
+//   color: colors.$White;
+// }

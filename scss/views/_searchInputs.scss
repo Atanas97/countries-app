@@ -2,7 +2,6 @@
 @use "../utilities/mixins";
 
 .countries-navigation {
-  //   background-color: red;
   width: 90vw;
   margin-inline: auto;
   padding: 1rem 0;
@@ -49,6 +48,7 @@
       padding: 0 3rem;
       border: none;
       border-radius: 0.2rem;
+      background-color: colors.$White;
       @include mixins.boxShadow(10px);
       font-size: 0.9rem;
     }
@@ -105,3 +105,18 @@
     }
   }
 }
+.countries-navigation.darkmode :is(input, .options-btn, .filter-options) {
+  background-color: colors.$DarkBlue;
+  color: colors.$White;
+}
+// {
+
+//   input {
+//     background-color: colors.$DarkBlue;
+//     color: colors.$White;
+//   }
+//   .options-btn {
+
+//   }
+//   .filter-options
+// }

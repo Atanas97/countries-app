@@ -11,9 +11,6 @@
   padding: 0;
   font-family: fonts.$nunito;
 }
-main {
-  background-color: colors.$VeryLightGray;
-}
 
 .flex {
   display: flex;
@@ -21,4 +18,8 @@ main {
   flex-wrap: wrap;
   gap: 0.3rem;
   margin: 1rem 0;
+}
+
+main {
+  background-color: colors.$VeryLightGray;
 }

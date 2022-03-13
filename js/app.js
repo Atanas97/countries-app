@@ -1,4 +1,6 @@
 //Global Variables
+const header = document.querySelector(".header");
+const wrap = document.querySelector(".countries-wrap");
 const countriesGrid = document.querySelector(".grid");
 const singleCountry = document.querySelector(".country");
 const backBtn = document.querySelector(".go-back-btn");
@@ -29,9 +31,9 @@ const showDataOnLoad = (data) => {
   showLoader();
 
   let html;
+  let gridCard;
   for (let index = 0; index <= 7; index++) {
     const num = Math.floor(Math.random() * 49);
-    console.log(num);
     if (data[num].capital === undefined) continue;
 
     //destructure variables from objects needed for the grid card.
@@ -66,7 +68,7 @@ const showDataOnLoad = (data) => {
       `;
 
     countriesGrid.insertAdjacentHTML("afterbegin", html);
-    const gridCard = document.querySelector(".grid-card");
+    gridCard = document.querySelector(".grid-card");
     gridCard.addEventListener("click", () => {
       searchCountry(common);
     });
@@ -80,6 +82,7 @@ const showDataOnLoad = (data) => {
 const searchCountry = async (name) => {
   try {
     showLoader();
+    putInactiveClass(countriesGrid, "inactive");
     const fetchData = await fetch(
       `https://restcountries.com/v3.1/name/${
         searchBar.value ? searchBar.value : name
@@ -96,6 +99,7 @@ let countryHtml;
 let bordersArr;
 let topDomain;
 const showCountry = (countryEntry) => {
+  putInactiveClass(countriesGrid, "inactive");
   const [country] = countryEntry;
   const {
     altSpellings,
@@ -232,6 +236,7 @@ const fetchByRegion = async (region) => {
   try {
     showLoader();
     putInactiveClass(countriesGrid, "inactive");
+    countriesGrid.innerHTML = "";
     const fetchRegion = await fetch(
       `https://restcountries.com/v3.1/region/${region}`
     );
@@ -250,7 +255,6 @@ const goBack = () => {
 
 const displayClearSearch = (e) => {
   const inputVal = e.target.value;
-  // if (!inputVal) return;
   inputVal
     ? putInactiveClass(clearSearchBtn, "show")
     : removeInactiveClass(clearSearchBtn, "show");
@@ -264,7 +268,16 @@ const clearSearch = () => {
 };
 
 //Toggle Dark/Light Mode
-const toggleMode = () => {};
+const btnIcon = document.getElementById("darkmodeBtn");
+const toggleMode = () => {
+  // putInactiveClass(header, "darkmode");
+  // putInactiveClass(navigationBar, "darkmode");
+  // putInactiveClass(wrap, "darkmode");
+  // putInactiveClass(singleCountry, "darkmode");
+  // putInactiveClass(gridCard, "darkmode");
+  // console.log(btnIcon);
+  // btnIcon.className = "fa-solid fa-brightness";
+};
 
 //idea
 const putInactiveClass = (element, className) => {
@@ -290,7 +303,10 @@ searchBar.addEventListener("keypress", (e) => {
 });
 backBtn.addEventListener("click", goBack);
 window.addEventListener("load", hideLoader());
-darkModeBtn.addEventListener("click", toggleMode);
+darkModeBtn.addEventListener("click", () => {
+  console.log(btnIcon.className);
+  toggleMode();
+});
 
 //Show cross to clear input from text
 searchBar.addEventListener("input", displayClearSearch);
